@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+{% block content %}
+<link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+<div class="container">
+    <div class="page-header">
+        <div>Sites</div>
+        <hr>
+        <div class="container">
+            {% for record in context.data %}
+            <div class="block"><a href="/site/{{record['name']}}">{{record['name']}}</a></div>
+            {% endfor %}
+        </div>
+        <hr>
+    </div>
+    {% include 'footer.html' %}
+</div>
+<script type="text/javascript" src="{{ url_for('static', filename='js/functions.js') }}"></script>
+{% endblock %}
+{% endblock %}

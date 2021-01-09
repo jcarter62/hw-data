@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+    {% block content %}
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+        <div class="container">
+            <div class="page-header">
+                <a href="/sites">List Sites</a>
+            </div>
+            {% include 'footer.html' %}
+        </div>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/functions.js') }}"></script>
+    {% endblock %}
+{% endblock %}

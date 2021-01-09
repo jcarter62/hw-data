@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+    {% block content %}
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+        <div class="container">
+            <div class="page-header">
+                This app provides a way to display relatively recent flow information
+                for the plants along the San Luis canal.
+            </div>
+            {% include 'footer.html' %}
+        </div>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/functions.js') }}"></script>
+    {% endblock %}
+{% endblock %}
