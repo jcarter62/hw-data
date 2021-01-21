@@ -9,6 +9,8 @@ class Settings:
         self.port = self.get_env('APP_PORT', 5000)
         self.api_ip = self.get_env('APP_API_IP', '')
         self.api_port = self.get_env('APP_API_PORT', 'n')
+        self.session_secret_key = self.get_env('APP_SECRET_KEY', '')
+        self.session_file_dir = self.get_env('APP_SESS_FILE_DIR', '')
 
         if self.message.__len__() > 0:
             print('Warning:')

@@ -1,4 +1,6 @@
 flask
+flask-session
 waitress
 flask-bootstrap
 requests
+
