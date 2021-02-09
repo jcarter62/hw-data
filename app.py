@@ -3,6 +3,7 @@ from flask_bootstrap import Bootstrap
 from appsettings import Settings
 from os import path
 from ui.ui_routes import ui_routes
+from sess_data import Log
 
 app = Flask(__name__)
 
@@ -18,8 +19,9 @@ def app_before_request():
     req = request
     if req is None:
         return
-
     url = request.url
+    l = Log(session)
+    l.exec(url)
     session['last_request'] = url
 
 
@@ -34,4 +36,4 @@ def favicon():
 if __name__ == '__main__':
     from waitress import serve
     s = Settings()
-    serve(app, host=s.ip, port=s.port)
+    serve(app, host=s.ip, port=s.port, threads=8)

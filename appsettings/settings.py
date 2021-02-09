@@ -27,3 +27,12 @@ class Settings:
             self.message.append('{} not defined'.format(varname))
         return value
 
+    def __str__(self):
+        s = ''
+        s = s + 'APP_IP=' + self.ip + '\n'
+        s = s + 'APP_PORT=' + self.port + '\n'
+        s = s + 'APP_API_IP=' + self.api_ip + '\n'
+        s = s + 'APP_API_PORT=' + self.api_port + '\n'
+        s = s + 'APP_SECRET_KEY=' + self.session_secret_key + '\n'
+        s = s + 'APP_SESS_FILE_DIR=' + self.session_file_dir + '\n'
+        return s
