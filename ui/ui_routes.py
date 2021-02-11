@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, session
 from appsettings import Settings
 import requests, json
 
@@ -42,12 +42,18 @@ def ui_sites():
     return render_template('sites.html', context=context)
 
 
-@ui_routes.route('/site/<sitename>')
+@ui_routes.route('/site/<sitename>', methods=['GET', 'POST'])
 def ui_site(sitename):
+    if request.method == 'POST':
+        session['days'] = request.form.get('numdays')
+
     s = Settings()
     site = sitename
     freq = '4PerDay'
-    days = 15
+    # Load default days.
+    days = session.get('days', 15)
+    if days is None:
+        days = 15
     #
     url = s.api_ip + ':' + s.api_port + '/api/v1/site/{}/{}/{}'.format(site, freq, days)
     #
@@ -63,7 +69,9 @@ def ui_site(sitename):
 
     context = {
         'title': 'Site {}'.format(sitename),
-        'data': records
+        'data': records,
+        'posturl': '/site/' + sitename,
+        'def_days': days
     }
     return render_template('site.html', context=context)
 

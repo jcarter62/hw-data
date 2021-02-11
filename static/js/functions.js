@@ -16,3 +16,13 @@ function pw2txt(id) {
         e.type = 'password';
     }
 }
+
+// function saveFrom() {
+//     let val = document.getElementById('fromdate').value;
+//     console.log(val);
+// }
+//
+// function saveTo() {
+//     let val = document.getElementById('todate').value;
+//     console.log(val);
+// }

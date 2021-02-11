@@ -1,38 +1,45 @@
 {% extends "base.html" %}
 
 {% block page_content %}
-{% block content %}
-<link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
-<div class="container">
-    <div class="page-header">
-        <div>{{context.title}}</div>
-        <hr>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <td>Channel</td>
-                <td>Date</td>
-                <td>Time</td>
-                <td>Reading</td>
-                <td>Consumption</td>
-            </tr>
-            </thead>
-            <tbody>
-                {% for record in context.data %}
-                <tr>
-                    <td>{{record['channel']}}</td>
-                    <td>{{record['date']}}</td>
-                    <td>{{record['time']}}</td>
-                    <td>{{record['reading']}}</td>
-                    <td>{{record['consumption']}}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <hr>
-    </div>
-    {% include 'footer.html' %}
-</div>
-<script type="text/javascript" src="{{ url_for('static', filename='js/functions.js') }}"></script>
-{% endblock %}
+    {% block content %}
+        <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+        <div class="container">
+            <div class="page-header">
+                <div class="table">
+                    <div class="row">
+                        <form method="post" action="{{ context.posturl }}">
+                            <div class="col-md-1">{{ context.title }}</div>
+                            <div class="col-md-3"><span>Days:<input type="number" name="numdays" value="{{ context.def_days }}" ></span></div>
+                            <div class="col-md-1"><button type="submit" value="submit">Load</button></div>
+                        </form>
+                    </div>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <td>Channel</td>
+                        <td>Date</td>
+                        <td>Time</td>
+                        <td>Reading</td>
+                        <td>Consumption</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for record in context.data %}
+                        <tr>
+                            <td>{{ record['channel'] }}</td>
+                            <td>{{ record['date'] }}</td>
+                            <td>{{ record['time'] }}</td>
+                            <td>{{ record['reading'] }}</td>
+                            <td>{{ record['consumption'] }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <hr>
+            </div>
+            {% include 'footer.html' %}
+        </div>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/functions.js') }}"></script>
+    {% endblock %}
 {% endblock %}
